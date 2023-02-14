@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func Connect() *mongo.Client {
+func Connect() *mongo.Database {
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Unable to load .env file")
 	}
@@ -26,8 +26,13 @@ func Connect() *mongo.Client {
 		panic(err)
 	}
 
-	log.Print("Connected to DB")
-	return client
+	db := os.Getenv("MONGODB_DB")
+	if db == "" {
+		log.Fatal("No MONGODB_DB env var found")
+	}
+
+	log.Print("Connected to DB: ", db)
+	return client.Database(db)
 }
 
-var DBClient *mongo.Client = Connect()
+var DB *mongo.Database = Connect()

@@ -1,14 +1,16 @@
 package main
 
 import (
-	"wordle-server/user"
+	"wordle-server/puzzle/puzzle_router"
+	"wordle-server/user/user_router"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-	user.UserRouter(r)
+	user_router.Router(r)
+	puzzle_router.Router(r)
 
 	r.Run()
 }
