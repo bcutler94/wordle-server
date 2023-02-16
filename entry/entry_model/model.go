@@ -13,22 +13,6 @@ import (
 
 var EntryCollection = configs.DB.Collection("entries")
 
-// type Entry struct {
-// 	ID       primitive.ObjectID `bson:"_id,omitempty"`
-// 	PuzzleId primitive.ObjectID `bson:"puzzleId"`
-// 	UserId   primitive.ObjectID `bson:"userId"`
-// 	Guesses  [5]struct {
-// 		Guess  string          `bson:"guess"`
-// 		Result [5]LetterResult `bson:"result"`
-// 	} `bson:"guesses"`
-// }
-
-// type EntryInput struct {
-// 	Guess    string `json:"guess" validate:"required,len=5,alpha"`
-// 	PuzzleId string `json:"puzzleId" validate:"required,len=24,hexadecimal"`
-// 	UserId   string `json:"userId" validate:"required,len=24,hexadecimal"`
-// }
-
 func GetEntryByID(ctx context.Context, ID primitive.ObjectID) (entry.Entry, error) {
 	var entry entry.Entry
 	filter := bson.D{
