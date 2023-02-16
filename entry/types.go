@@ -20,12 +20,14 @@ type Entry struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty"`
 	PuzzleId primitive.ObjectID `bson:"puzzleId"`
 	UserId   primitive.ObjectID `bson:"userId"`
-	Guesses  [5]struct {
-		Guess  string          `bson:"guess"`
-		Result [5]LetterResult `bson:"result"`
-	} `bson:"guesses"`
+	Guesses  []string           `bson:"guesses"`
+	Results  [][]LetterResult   `bson:"results"`
 }
 
 type EntryErrorResponse struct {
 	Message string `json:"message"`
+}
+
+type EntrySuccessResponse struct {
+	Data Entry `json:"data"`
 }

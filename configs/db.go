@@ -20,7 +20,7 @@ func Connect() *mongo.Database {
 		log.Fatal("No MONGODB_URI env var found")
 	}
 
-	connectOptions := options.Client().ApplyURI(uri)
+	connectOptions := options.Client().ApplyURI(uri).SetMinPoolSize(100)
 	client, err := mongo.Connect(context.TODO(), connectOptions)
 	if err != nil {
 		panic(err)
